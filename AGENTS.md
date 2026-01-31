@@ -4,7 +4,7 @@
 
 **Stack**: Bun + React + TypeScript + Vite + Tailwind CSS + Shadcn UI + Radix UI + Recharts
 **Type**: Frontend-only BI dashboard demo/mock app
-**Theme**: Light mode only
+**Theme**: Light mode default, with optional dark mode toggle
 **Deployment**: Vercel
 
 ## Commands
@@ -41,6 +41,7 @@ vercel --prod            # Deploy to production
 ## Code Style
 
 ### TypeScript
+
 - Use strict TypeScript with explicit types
 - Define interfaces in `src/types/index.ts`
 - Use `type` for unions, `interface` for object shapes
@@ -48,6 +49,7 @@ vercel --prod            # Deploy to production
 - Enable `strictNullChecks` and `noImplicitAny`
 
 ### Naming Conventions
+
 - **Components**: PascalCase (e.g., `KPICard.tsx`, `RevenueChart.tsx`)
 - **Hooks**: camelCase with `use` prefix (e.g., `useRealtime.ts`)
 - **Utilities**: camelCase (e.g., `formatCurrency.ts`)
@@ -56,6 +58,7 @@ vercel --prod            # Deploy to production
 - **CSS Classes**: kebab-case (Tailwind utilities)
 
 ### File Structure
+
 ```
 src/
 ├── components/ui/        # shadcn components (auto-generated)
@@ -72,18 +75,20 @@ src/
 ```
 
 ### Imports Order
+
 1. React imports
 2. Third-party libraries (recharts, lucide-react)
-3. Shadcn components (@/components/ui/*)
-4. Internal components (@/components/*)
-5. Hooks (@/hooks/*)
-6. Types (@/types/*)
-7. Data/utilities (@/data/*, @/lib/*)
+3. Shadcn components (@/components/ui/\*)
+4. Internal components (@/components/\*)
+5. Hooks (@/hooks/\*)
+6. Types (@/types/\*)
+7. Data/utilities (@/data/_, @/lib/_)
 8. Relative imports (./, ../)
 
 Use `@/` path aliases. Group with blank lines between sections.
 
 ### Component Structure
+
 ```tsx
 // Types first
 interface Props {
@@ -102,6 +107,7 @@ export function Component({ title, value }: Props) {
 ```
 
 ### Styling (Tailwind)
+
 - Use Tailwind utility classes exclusively
 - Use `cn()` utility from `lib/utils.ts` for conditional classes
 - Follow shadcn's design system tokens
@@ -109,23 +115,27 @@ export function Component({ title, value }: Props) {
 - Use `className` prop for component customization
 
 ### Error Handling
+
 - Use try/catch for async operations
 - Display user-friendly error messages via toast or alert components
 - Log errors to console for debugging
 - Use error boundaries for component-level error handling
 
 ### State Management
+
 - Use React hooks (useState, useReducer) for local state
 - Use Context API only if prop drilling exceeds 3 levels
 - Keep state as close to where it's used as possible
 
 ### Performance
+
 - Memoize expensive calculations with `useMemo`
 - Memoize callbacks with `useCallback` when passed to children
 - Use `React.memo` for pure components receiving stable props
 - Lazy load routes with `React.lazy()` and `Suspense`
 
 ### Testing
+
 - Use Bun's built-in test runner
 - Place tests next to components: `Component.tsx` → `Component.test.tsx`
 - Test component behavior, not implementation
@@ -133,12 +143,14 @@ export function Component({ title, value }: Props) {
 - Use `describe` blocks for grouping, `it` for test cases
 
 ### Git Conventions
+
 - Commit message format: `<type>: <concise description>`
 - Types: `feat`, `fix`, `refactor`, `test`, `docs`, `chore`
 - Keep commits atomic and focused
 - Branch naming: `dhruv2mars/<feature-name>`
 
 ### Mock Data
+
 - Place in `src/data/mockData.ts`
 - Use realistic value ranges
 - Include 12 months of time-series data
@@ -146,6 +158,7 @@ export function Component({ title, value }: Props) {
 - 5 funnel stages: Visit → Signup → Trial → Paid → Retained
 
 ### Dashboard Features
+
 - **KPI Cards**: Revenue, Users, Conversion Rate, Active Sessions
 - **Charts**: Revenue (Area), Categories (Pie), User Growth (Line), Funnel (Bar), Regions (Horizontal Bar)
 - **Drill-down**: Click chart → Analytics page with context
@@ -153,6 +166,7 @@ export function Component({ title, value }: Props) {
 - **Filters**: Date range picker affects all views
 
 ### Vercel Deployment
+
 - SPA routing configured in `vercel.json`
 - Build output directory: `dist/`
 - Environment: Node.js 18+

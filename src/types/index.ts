@@ -1,3 +1,7 @@
+// Remove these duplicate type definitions
+// Import them from the hook file instead:
+// import type { Theme, ThemeContextType } from '@/hooks/useTheme';
+
 export type ProductCategory =
   | "Electronics"
   | "Fashion"
@@ -5,7 +9,12 @@ export type ProductCategory =
   | "Sports"
   | "Books";
 
-export type FunnelStageName = "Visit" | "Signup" | "Trial" | "Paid" | "Retained";
+export type FunnelStageName =
+  | "Visit"
+  | "Signup"
+  | "Trial"
+  | "Paid"
+  | "Retained";
 
 export interface KPIData {
   title: string;
