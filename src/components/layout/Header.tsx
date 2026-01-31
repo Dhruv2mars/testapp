@@ -3,6 +3,7 @@ import { Menu, Bell, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { DarkModeToggle } from "./DarkModeToggle";
 
 interface HeaderProps {
   title: string;
@@ -16,8 +17,8 @@ export function Header({ title, onMenuToggle, className }: HeaderProps) {
   return (
     <header
       className={cn(
-        "h-16 bg-white border-b border-gray-200 flex items-center justify-between px-4 lg:px-6",
-        className
+        "h-16 bg-background border-b border-border flex items-center justify-between px-4 lg:px-6",
+        className,
       )}
     >
       <div className="flex items-center gap-4">
@@ -30,12 +31,12 @@ export function Header({ title, onMenuToggle, className }: HeaderProps) {
         >
           <Menu className="h-5 w-5" />
         </Button>
-        <h2 className="text-lg font-semibold text-gray-900">{title}</h2>
+        <h2 className="text-lg font-semibold text-foreground">{title}</h2>
       </div>
 
       <div className="flex items-center gap-4">
         <div className="relative hidden sm:block">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
             type="text"
             placeholder="Search..."
@@ -47,6 +48,7 @@ export function Header({ title, onMenuToggle, className }: HeaderProps) {
         <Button variant="ghost" size="icon" aria-label="Notifications">
           <Bell className="h-5 w-5" />
         </Button>
+        <DarkModeToggle />
       </div>
     </header>
   );

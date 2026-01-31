@@ -1,3 +1,11 @@
+export type Theme = "light" | "dark" | "system";
+
+export interface ThemeContextType {
+  theme: Theme;
+  setTheme: (theme: Theme) => void;
+  resolvedTheme: "light" | "dark";
+}
+
 export type ProductCategory =
   | "Electronics"
   | "Fashion"
@@ -5,7 +13,12 @@ export type ProductCategory =
   | "Sports"
   | "Books";
 
-export type FunnelStageName = "Visit" | "Signup" | "Trial" | "Paid" | "Retained";
+export type FunnelStageName =
+  | "Visit"
+  | "Signup"
+  | "Trial"
+  | "Paid"
+  | "Retained";
 
 export interface KPIData {
   title: string;
