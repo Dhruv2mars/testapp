@@ -1,10 +1,6 @@
-export type Theme = "light" | "dark" | "system";
-
-export interface ThemeContextType {
-  theme: Theme;
-  setTheme: (theme: Theme) => void;
-  resolvedTheme: "light" | "dark";
-}
+// Remove these duplicate type definitions
+// Import them from the hook file instead:
+// import type { Theme, ThemeContextType } from '@/hooks/useTheme';
 
 export type ProductCategory =
   | "Electronics"
