@@ -25,13 +25,26 @@ export function RevenueChart({
   className,
   onClick,
 }: RevenueChartProps) {
+  const handleEnterSpace = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (onClick && (event.key === "Enter" || event.key === " ")) {
+      event.preventDefault();
+      onClick();
+    }
+  };
+
   return (
     <Card className={cn("", className)}>
       <CardHeader>
         <CardTitle>{title}</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="h-[300px] min-h-[300px] w-full cursor-pointer" onClick={onClick}>
+        <div
+          className={cn("h-[300px] min-h-[300px] w-full", onClick && "cursor-pointer")}
+          onClick={onClick}
+          role={onClick ? "button" : undefined}
+          tabIndex={onClick ? 0 : undefined}
+          onKeyDown={handleEnterSpace}
+        >
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={data}>
               <CartesianGrid strokeDasharray="3 3" />

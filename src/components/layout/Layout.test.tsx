@@ -48,28 +48,26 @@ describe("Header", () => {
   it("should render search input", () => {
     const { container } = render(React.createElement(Header, { title: "Dashboard" }));
     const searchInput = container.querySelector("input[type='text']") || container.querySelector("input[placeholder*='Search']") || container.querySelector("input");
-    expect(searchInput).toBeDefined();
+    expect(searchInput).not.toBeNull();
   });
 
   it("should render notification bell", () => {
-    const { container } = render(React.createElement(Header, { title: "Dashboard" }));
-    expect(container.querySelector("[data-testid='icon-bell']")).toBeDefined();
+    const { getByTestId } = render(React.createElement(Header, { title: "Dashboard" }));
+    expect(getByTestId("icon-bell")).toBeInTheDocument();
   });
 
   it("should handle search input changes", () => {
     const { container } = render(React.createElement(Header, { title: "Dashboard" }));
     const searchInput = container.querySelector("input[type='text']") || container.querySelector("input[placeholder*='Search']") || container.querySelector("input");
-    expect(searchInput).toBeDefined();
-    if (searchInput) {
-      fireEvent.change(searchInput, { target: { value: "test query" } });
-      expect((searchInput as HTMLInputElement).value).toBe("test query");
-    }
+    expect(searchInput).not.toBeNull();
+    fireEvent.change(searchInput!, { target: { value: "test query" } });
+    expect((searchInput as HTMLInputElement).value).toBe("test query");
   });
 });
 
 describe("Layout", () => {
   it("should render sidebar and main content area", () => {
-    const { container } = render(
+    const { container, getByTestId } = render(
       React.createElement(BrowserRouter, null,
         React.createElement(Layout, null,
           React.createElement("div", { "data-testid": "content" }, "Main Content")
@@ -77,7 +75,7 @@ describe("Layout", () => {
       )
     );
     expect(container.textContent).toContain("BI Dashboard");
-    expect(container.querySelector("[data-testid='content']")).toBeDefined();
+    expect(getByTestId("content")).toBeInTheDocument();
     expect(container.textContent).toContain("Main Content");
   });
 

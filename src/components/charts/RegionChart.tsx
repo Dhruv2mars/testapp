@@ -26,13 +26,27 @@ export function RegionChart({
   className,
   onClick,
 }: RegionChartProps) {
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (onClick && (event.key === "Enter" || event.key === " ")) {
+      event.preventDefault();
+      onClick();
+    }
+  };
+
   return (
     <Card className={cn("", className)}>
       <CardHeader>
         <CardTitle>{title}</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="h-[300px] min-h-[300px] w-full cursor-pointer" onClick={onClick}>
+        <div
+          className={cn("h-[300px] min-h-[300px] w-full", onClick && "cursor-pointer")}
+          onClick={onClick}
+          role={onClick ? "button" : undefined}
+          tabIndex={onClick ? 0 : undefined}
+          onKeyDown={handleKeyDown}
+          aria-disabled={!onClick}
+        >
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={data} layout="vertical">
               <CartesianGrid strokeDasharray="3 3" />

@@ -26,6 +26,7 @@ export function Header({ title, onMenuToggle, className }: HeaderProps) {
           size="icon"
           onClick={onMenuToggle}
           className="lg:hidden"
+          aria-label="Open menu"
         >
           <Menu className="h-5 w-5" />
         </Button>
@@ -43,7 +44,7 @@ export function Header({ title, onMenuToggle, className }: HeaderProps) {
             className="pl-9 w-64"
           />
         </div>
-        <Button variant="ghost" size="icon">
+        <Button variant="ghost" size="icon" aria-label="Notifications">
           <Bell className="h-5 w-5" />
         </Button>
       </div>

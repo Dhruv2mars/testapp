@@ -132,6 +132,13 @@ export function generateKPIData(): KPIData[] {
   ];
 }
 
+function formatDateLocal(date: Date): string {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
 export function generateDashboardData(): DashboardData {
   const today = new Date();
   const startOfYear = new Date(today.getFullYear(), 0, 1);
@@ -145,8 +152,8 @@ export function generateDashboardData(): DashboardData {
     funnel: generateFunnelData(),
     regions: generateRegionData(),
     dateRange: {
-      start: startOfYear.toISOString().split("T")[0],
-      end: endOfYear.toISOString().split("T")[0],
+      start: formatDateLocal(startOfYear),
+      end: formatDateLocal(endOfYear),
     },
   };
 }
